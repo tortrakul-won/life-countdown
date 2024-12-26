@@ -67,8 +67,6 @@
 		}
 	}
 
-	$: numList, console.log(numList);
-
 	let lifePercent;
 	$: lifePercent = ((now.valueOf() - Number(start)) * 100) / (Number(end) - Number(start));
 
