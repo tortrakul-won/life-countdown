@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import moment from 'moment';
+	import moment, { type unitOfTime } from 'moment';
 	import { onMount } from 'svelte';
 	import Birth from '../../../birth.svelte';
+	import Layout from '../../+layout.svelte';
 
 	let start, end;
 
@@ -42,18 +43,31 @@
 
 	$: seconds = endMoment.diff(tmpMoment, 'seconds');
 
-	$: allTime = endMoment.diff(startMoment, 'months');
-	$: remainingTime = endMoment.diff(nowMoment, 'months');
-	$: timePassed = nowMoment.diff(startMoment, 'months');
+	$: outerHeight = 0;
+	let properUnit: unitOfTime.Diff;
+	$: properUnit =
+		endMoment.diff(startMoment, 'months') > 300 && outerHeight < 400 ? 'years' : 'months';
 
-	let isCal = false;
-	const numList: number[] = [];
-	$: if (allTime && remainingTime) {
-		for (let i = 0; i <= allTime; i++) {
-			numList.push(i);
+	$: allTime = endMoment.diff(startMoment, properUnit);
+	$: remainingTime = endMoment.diff(nowMoment, properUnit);
+	$: timePassed = nowMoment.diff(startMoment, properUnit);
+
+	let unitMemo: Map<unitOfTime.Diff, number[]> = new Map();
+	let numList: number[] = [];
+	$: if (properUnit) {
+		if (!unitMemo.has(properUnit)) {
+			let tmp = [];
+			for (let i = 0; i <= allTime; i++) {
+				tmp.push(i);
+			}
+
+			numList = tmp;
+		} else {
+			numList = unitMemo.get(properUnit)!;
 		}
-		isCal = true; // Prevent further execution
 	}
+
+	$: numList, console.log(numList);
 
 	let lifePercent;
 	$: lifePercent = ((now.valueOf() - Number(start)) * 100) / (Number(end) - Number(start));
@@ -69,9 +83,11 @@
 	});
 </script>
 
+<svelte:window bind:outerHeight />
+
 <div class="w-[80%]">
-	<p>{nowText}</p>
-	<p class="bai-jamjuree-bold max-w-[70ch] text-wrap text-2xl">
+	<p class="static text-gray-500 [@media(max-height:400px)]:hidden">{nowText}</p>
+	<p class="bai-jamjuree-bold max-w-[70ch] text-wrap text-xl sm:text-2xl">
 		<ph>ฉันมีเวลาเหลืออีก</ph> <ph>{years} ปี {months} เดือน {days} วัน</ph>
 		<ph> {hours} ชั่วโมง {minutes} นาที {seconds} วินาที</ph>
 	</p>
@@ -80,7 +96,9 @@
 	</div> -->
 	<div>ผ่านไปแล้ว {lifePercent.toFixed(1)}%</div>
 	<div class="w-1/2 fill-orange-200"></div>
-	<div class="grid grid-cols-[repeat(auto-fill,10px)] gap-1">
+	<div
+		class="grid grid-cols-[repeat(auto-fill,8px)] gap-[3px] sm:grid-cols-[repeat(auto-fill,10px)] sm:gap-1"
+	>
 		{#each numList as num}
 			{#if num < timePassed}
 				<div class="aspect-square bg-gray-400"></div>
@@ -89,14 +107,16 @@
 			{/if}
 		{/each}
 	</div>
-	<div class="mt-4 flex w-full items-center justify-center gap-5">
-		<div>
-			<div class="inline-block aspect-square w-[10px] bg-blue-800"></div>
-			<span class="text-gray-700"> = 1 เดือน ที่ผ่านไปแล้ว</span>
-		</div>
+	<div class="mt-4 flex w-full items-center justify-center gap-5 [@media(max-height:400px)]:hidden">
 		<div>
 			<div class="inline-block aspect-square w-[10px] bg-gray-400"></div>
-			<span class="text-gray-700"> = 1 เดือน ที่ยังเหลือ</span>
+			<span class="text-gray-700">
+				= 1 {properUnit === 'months' ? 'เดือน' : 'ปี'} ที่ผ่านไปแล้ว</span
+			>
+		</div>
+		<div>
+			<div class="inline-block aspect-square w-[10px] bg-blue-800"></div>
+			<span class="text-gray-700"> = 1 {properUnit === 'months' ? 'เดือน' : 'ปี'} ที่ยังเหลือ</span>
 		</div>
 	</div>
 </div>

@@ -4,9 +4,9 @@
 </script>
 
 <Toaster richColors />
-<div class="relative flex min-h-dvh w-dvw items-center justify-center bg-blue-100">
+<div class="relative flex h-dvh w-full items-center justify-center bg-blue-100 md:w-dvw">
 	<div
-		class="flex min-h-[75%] w-3/4 flex-col items-center justify-evenly rounded-md border-2 border-blue-400 py-6"
+		class="flex min-h-full w-full flex-col items-center justify-evenly rounded-md border-2 border-blue-400 md:min-h-[75%] md:w-3/4 [@media(min-height:340px)]:py-6"
 	>
 		<slot />
 	</div>

@@ -55,43 +55,45 @@
 	}
 </script>
 
-<div class="bai-jamjuree-semibold pb-4 text-lg">คุณคิดว่าจะมีชีวิตถึงอายุกี่ปี</div>
-<div id="death-time-radio" class="text-md flex w-3/5 flex-col gap-3 text-center">
-	{#each yearOpts as year, index}
-		<div>
+<div class="w-3/5">
+	<div class="bai-jamjuree-semibold pb-4 text-center text-lg">คุณคิดว่าจะมีชีวิตถึงอายุกี่ปี</div>
+	<div id="death-time-radio" class="text-md flex flex-col flex-wrap gap-3 self-auto text-center">
+		{#each yearOpts as year, index}
+			<div>
+				<input
+					class="w-1/5 md:w-3/5"
+					type="radio"
+					name="death-time-opt"
+					on:click={handleClickOption}
+					id="dt-{year}"
+					value={year}
+					checked={index === 0}
+				/>
+				<label class="dt-label" for="dt-{year}">{year}</label>
+			</div>
+		{/each}
+	</div>
+	<div class="mt-3 flex flex-col items-center gap-3">
+		<span class="text-center">หรือ</span>
+		<form class="contents" on:submit|preventDefault={gotoCountdown}>
 			<input
-				type="radio"
-				name="death-time-opt"
-				on:click={handleClickOption}
-				id="dt-{year}"
-				value={year}
-				checked={index === 0}
+				id="dt-custom"
+				type="number"
+				min="1"
+				max="120"
+				placeholder="ระบุอายุขัย"
+				bind:value={deathTimeCustom}
+				on:blur={() => handleMouseLeaveCustom(deathTimeCustom)}
+				on:click={handleClickCustomDeathTime}
 			/>
-			<label class="dt-label" for="dt-{year}">{year}</label>
-		</div>
-	{/each}
-
-	<span>หรือ</span>
-	<form class="contents" on:submit|preventDefault={gotoCountdown}>
-		<input
-			id="dt-custom"
-			type="number"
-			min="1"
-			max="120"
-			placeholder="ระบุอายุขัย"
-			bind:value={deathTimeCustom}
-			on:blur={() => handleMouseLeaveCustom(deathTimeCustom)}
-			on:click={handleClickCustomDeathTime}
-		/>
-	</form>
-</div>
-<div>
-	<button
-		class="my-4 rounded-md border-2 border-blue-400 p-1 hover:bg-blue-400"
-		on:click={gotoCountdown}
-	>
-		ต่อไป</button
-	>
+		</form>
+		<button
+			class="w-fit rounded-md border-2 border-blue-400 p-1 hover:bg-blue-400"
+			on:click={gotoCountdown}
+		>
+			ต่อไป</button
+		>
+	</div>
 </div>
 
 <style>
@@ -123,6 +125,7 @@
 		color: white;
 	}
 	#dt-custom {
+		width: 100%;
 		cursor: pointer;
 		padding: 0.25rem 0.5rem;
 		flex: 1 1 auto;
