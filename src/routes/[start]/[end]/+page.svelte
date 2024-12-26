@@ -43,10 +43,10 @@
 
 	$: seconds = endMoment.diff(tmpMoment, 'seconds');
 
-	$: outerHeight = 0;
+	$: innerHeight = 0;
 	let properUnit: unitOfTime.Diff;
 	$: properUnit =
-		endMoment.diff(startMoment, 'months') > 300 && outerHeight < 400 ? 'years' : 'months';
+		endMoment.diff(startMoment, 'months') > 300 && innerHeight < 400 ? 'years' : 'months';
 
 	$: allTime = endMoment.diff(startMoment, properUnit);
 	$: remainingTime = endMoment.diff(nowMoment, properUnit);
@@ -81,7 +81,7 @@
 	});
 </script>
 
-<svelte:window bind:outerHeight />
+<svelte:window bind:innerHeight />
 
 <div class="w-[80%]">
 	<p class="static text-gray-500 [@media(max-height:400px)]:hidden">{nowText}</p>
