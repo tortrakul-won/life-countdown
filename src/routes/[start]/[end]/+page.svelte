@@ -44,6 +44,9 @@
 	$: seconds = endMoment.diff(tmpMoment, 'seconds');
 
 	$: outerHeight = 0;
+	$: outerWidth = 0;
+	$: innerWidth = 0;
+	$: innerHeight = 0;
 	let properUnit: unitOfTime.Diff;
 	$: properUnit =
 		endMoment.diff(startMoment, 'months') > 300 && outerHeight < 400 ? 'years' : 'months';
@@ -81,7 +84,7 @@
 	});
 </script>
 
-<svelte:window bind:outerHeight />
+<svelte:window bind:outerHeight bind:innerHeight bind:outerWidth bind:innerWidth />
 
 <div class="w-[80%]">
 	<p class="static text-gray-500 [@media(max-height:400px)]:hidden">{nowText}</p>
@@ -92,6 +95,10 @@
 	<!-- <div class="relative h-20 bg-gray-500">
 		<div class="absolute left-0 h-full bg-green-400" style="width: {lifePercent}%;"></div>
 	</div> -->
+
+	<div class="relative h-20 bg-gray-500">
+		outerWidth: {outerWidth} outerHeight: {outerHeight} innerHeight: {innerHeight} innerWidth: {innerWidth}
+	</div>
 	<div>ผ่านไปแล้ว {lifePercent.toFixed(1)}%</div>
 	<div class="w-1/2 fill-orange-200"></div>
 	<div
