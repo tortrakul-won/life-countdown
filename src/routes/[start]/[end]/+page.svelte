@@ -105,7 +105,7 @@
 			{/if}
 		{/each}
 	</div>
-	<div class="mt-4 flex w-full items-center justify-center gap-5 [@media(max-height:400px)]:hidden">
+	<div class="mt-4 flex w-full items-center justify-center gap-5">
 		<div>
 			<div class="inline-block aspect-square w-[10px] bg-gray-400"></div>
 			<span class="text-gray-700">
