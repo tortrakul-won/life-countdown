@@ -9,7 +9,7 @@
 	class="relative flex min-h-[100dvh] min-w-full items-center justify-center bg-blue-100 md:min-w-[100dvw]"
 >
 	<div
-		class="flex min-h-full w-full flex-col items-center justify-evenly rounded-md border-2 border-blue-400 md:min-h-[75%] md:w-3/4 [@media(min-height:340px)]:py-6"
+		class="flex min-h-full w-full flex-col items-center justify-evenly rounded-md border-2 border-blue-400 py-6 md:min-h-[75%] md:w-3/4"
 	>
 		<slot />
 	</div>

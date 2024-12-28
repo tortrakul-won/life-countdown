@@ -55,7 +55,7 @@
 	}
 </script>
 
-<div class="w-3/5">
+<div class="w-3/5 [@media(max-height:400px)]:w-4/5">
 	<div class="bai-jamjuree-semibold pb-4 text-center text-lg">คุณคิดว่าจะมีชีวิตถึงอายุกี่ปี</div>
 	<div
 		id="death-time-radio"
