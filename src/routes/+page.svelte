@@ -27,12 +27,12 @@
 </script>
 
 <div class="">โปรดใส่วันเกิดของคุณ</div>
-<div>
+<div class="grid grid-cols-[min-content] gap-4">
 	<input type="datetime-local" id="birth-time" />
 	<button
 		class="rounded-md border-2 border-blue-400 p-1 hover:bg-blue-400"
 		on:click={() => gotoEndTime()}
 	>
-		confirm</button
+		ถัดไป</button
 	>
 </div>

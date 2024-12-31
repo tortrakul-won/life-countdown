@@ -6,8 +6,7 @@
 	const { start } = $page.params;
 
 	$: startMoment = moment(Number(start));
-	$: currentAge = moment().year() - startMoment.get('year');
-
+	$: currentAge = moment().diff(startMoment, 'years');
 	let deathTimeCustom: string;
 
 	function handleMouseLeaveCustom(value: string) {
@@ -55,13 +54,16 @@
 	}
 </script>
 
-<div class="w-3/5">
+<div class="w-3/5 [@media(max-height:400px)]:w-4/5">
 	<div class="bai-jamjuree-semibold pb-4 text-center text-lg">คุณคิดว่าจะมีชีวิตถึงอายุกี่ปี</div>
-	<div id="death-time-radio" class="text-md flex flex-col flex-wrap gap-3 self-auto text-center">
+	<div
+		id="death-time-radio"
+		class="text-md grid grid-cols-[repeat(auto-fill,minmax(30px,120px))] justify-center gap-3 self-auto border text-center [@media(min-height:400px)]:grid-cols-[1fr]"
+	>
 		{#each yearOpts as year, index}
 			<div>
 				<input
-					class="w-1/5 md:w-3/5"
+					class="w-1/5 [@media(min-height:400px)]:w-3/5"
 					type="radio"
 					name="death-time-opt"
 					on:click={handleClickOption}
@@ -79,7 +81,7 @@
 			<input
 				id="dt-custom"
 				type="number"
-				min="1"
+				min={currentAge + 1}
 				max="120"
 				placeholder="ระบุอายุขัย"
 				bind:value={deathTimeCustom}
@@ -108,10 +110,9 @@
 	}
 
 	.dt-label {
+		display: block;
 		cursor: pointer;
 		padding: 0.25rem 0.5rem;
-		flex: 1 1 auto;
-		display: block;
 		border-width: 2px;
 		border-color: #60a5fa; /* Tailwind's blue-400 */
 		background-color: inherit;
