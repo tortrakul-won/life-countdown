@@ -6,8 +6,7 @@
 	const { start } = $page.params;
 
 	$: startMoment = moment(Number(start));
-	$: currentAge = moment().year() - startMoment.get('year');
-
+	$: currentAge = moment().diff(startMoment, 'years');
 	let deathTimeCustom: string;
 
 	function handleMouseLeaveCustom(value: string) {
@@ -82,7 +81,7 @@
 			<input
 				id="dt-custom"
 				type="number"
-				min="1"
+				min={currentAge + 1}
 				max="120"
 				placeholder="ระบุอายุขัย"
 				bind:value={deathTimeCustom}
