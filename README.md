@@ -22,8 +22,8 @@ Life Coundown เป็นเว็บแอปพลิเคชันที่
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/life-timer.git
-   cd life-timer
+   git clone https://github.com/tortrakul-won/life-countdown.git
+   cd life-countdown
    ```
 
 2. **Install Dependencies**
@@ -71,8 +71,8 @@ Life Countdown is a web application that shows how much time a user has left bas
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/life-timer.git
-   cd life-timer
+   git clone https://github.com/tortrakul-won/life-countdown.git
+   cd life-countdown
    ```
 
 2. **Install Dependencies**
