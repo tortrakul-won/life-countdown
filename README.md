@@ -40,6 +40,12 @@ Life Coundown เป็นเว็บแอปพลิเคชันที่
 
 4. **Open the Application** เปิดเบราว์เซอร์และไปที่ `http://localhost:5173`&#x20;
 
+## Roadmap
+- [ ] เพิ่ม Visualization แบบใหม่
+- [ ] เพิ่ม สี อื่นๆ ให้เลือก
+- [ ] เพิ่มปุ่ม Copy URL to clipboard
+- [ ] เพิ่ม Validation และหน้า 404
+- [ ] ทำ edit layout และ embeded layout
 
 ---
 
