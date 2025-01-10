@@ -1,38 +1,86 @@
-# create-svelte
+# Life Coundown
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Life Coundown เป็นเว็บแอปพลิเคชันที่แสดงเวลาที่เหลือของผู้ใช้ตามการป้อนข้อมูลวันเกิดและอายุขัยในหน่วยปี แอปพลิเคชันจะคำนวณและแสดงเวลาที่เหลือในหน่วยต่างๆ (ปี, เดือน, วัน, ฯลฯ)&#x20;
+<p align="center">
+  <img width="908" alt="image" src="https://github.com/user-attachments/assets/e1171891-2098-400b-a8bb-034975554ba5" />
+</p>
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- แสดงวันที่และเวลาปัจจุบันในรูปแบบภาษาไทย
+- คำนวณและแสดงเวลาที่เหลือในหน่วยปี, เดือน, วัน, ชั่วโมง, นาที และวินาที
+- แสดงผลกราฟิกของเวลาที่ผ่านไปและเวลาที่เหลือด้วยบล็อกสี
+- อัปเดตเวลาในทุก ๆ วินาที
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## Dependencies
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- **SvelteKit**: สำหรับการสร้างเว็บแอปพลิเคชันที่รวดเร็ว.
+- **Moment.js**: สำหรับการจัดการวันที่และเวลา.
 
-## Developing
+## Setup Instructions
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+1. **Clone the Repository**
 
-```bash
-npm run dev
+   ```bash
+   git clone https://github.com/yourusername/life-timer.git
+   cd life-timer
+   ```
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+2. **Install Dependencies**
 
-## Building
+   ```bash
+   pnpm install
+   ```
 
-To create a production version of your app:
+3. **Run the Development Server**
 
-```bash
-npm run build
-```
+   ```bash
+   pnpm run dev
+   ```
 
-You can preview the production build with `npm run preview`.
+4. **Open the Application** เปิดเบราว์เซอร์และไปที่ `http://localhost:5173`&#x20;
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+---
+
+
+# Life Countdown (English Version)
+
+Life Countdown is a web application that shows how much time a user has left based on their input of birth date and lifespan in years. The application dynamically calculates and displays the remaining time in various units (years, months, days, etc.).
+
+## Features
+
+- Displays current date and time in Thai format.
+- Calculates and shows the remaining time in years, months, days, hours, minutes, and seconds.
+- Graphically represents the time passed and remaining using colored blocks.
+- Updates the time every second.
+
+## Dependencies
+
+- **SvelteKit**: A modern web framework for building fast web applications.
+- **Moment.js**: For date and time manipulations.
+
+## Setup Instructions
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/yourusername/life-timer.git
+   cd life-timer
+   ```
+
+2. **Install Dependencies**
+
+   ```bash
+   pnpm install
+   ```
+
+3. **Run the Development Server**
+
+   ```bash
+   pnpm run dev
+   ```
+
+4. **Open the Application**
+   Open your browser and navigate to `http://localhost:5173` to see the application in action.
+
